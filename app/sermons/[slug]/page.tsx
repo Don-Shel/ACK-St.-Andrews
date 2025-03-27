@@ -153,7 +153,7 @@ export default function SermonPage() {
                   title={sermon.title}
                   description={`Listen to ${sermon.title} by ${sermon.speaker} at ACK St. Andrews Kibabet`}
                 />
-                <PrintPage />
+               
               </div>
             </div>
 
