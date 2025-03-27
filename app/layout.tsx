@@ -8,6 +8,8 @@ import { ThemeProvider } from "@/components/theme-provider"
 import FloatingActionButton from "@/components/floating-action-button"
 import BackToTop from "@/components/back-to-top"
 import CookieConsent from "@/components/cookie-consent"
+import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -37,7 +39,10 @@ export default function RootLayout({
             <FloatingActionButton />
             <BackToTop />
             <CookieConsent />
-          
+
+            <Analytics />
+            <SpeedInsights />
+
         </ThemeProvider>
       </body>
     </html>
