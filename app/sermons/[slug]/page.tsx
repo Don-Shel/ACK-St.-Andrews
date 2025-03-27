@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Calendar, Clock, Download, User } from "lucide-react"
 import SermonPlayer from "@/components/sermon-player"
 import SharePage from "@/components/share-page"
-import PrintPage from "@/components/print-page"
+//import PrintPage from "@/components/print-page"
 import RelatedContent from "@/components/related-content"
 
 // This would normally come from a database or CMS
