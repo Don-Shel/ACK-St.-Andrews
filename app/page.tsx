@@ -186,7 +186,15 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <ScrollAnimation>
                 <div className="aspect-video rounded-lg overflow-hidden shadow-lg">
-                <YouTubeVideo videoId="tazb7lmOM-g" title="Sunday Service Livestream" />
+                    <video 
+                    src="/Blue Neon Tech Coming Soon Video.mp4" 
+                    className="w-full h-full object-cover"
+                    controls
+                    poster="/service-thumbnail.jpg"
+                    loop
+                    autoPlay
+                    muted
+                    ></video>
                 </div>
             </ScrollAnimation>
             <ScrollAnimation>
