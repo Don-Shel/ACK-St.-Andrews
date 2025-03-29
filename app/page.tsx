@@ -189,7 +189,6 @@ export default function Home() {
                     <video 
                     src="/Blue Neon Tech Coming Soon Video.mp4" 
                     className="w-full h-full object-cover"
-                    controls
                     poster="/service-thumbnail.jpg"
                     loop
                     autoPlay
