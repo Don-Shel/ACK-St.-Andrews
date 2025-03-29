@@ -1,25 +1,70 @@
 "use client"
 
-import type React from "react"
-
 import { useState } from "react"
+import emailjs from '@emailjs/browser'
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
 import { CheckCircle, HandIcon as PrayingHands } from "lucide-react"
+import { toast } from "sonner"
 
 export default function PrayerRequest() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle")
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    prayerRequest: "",
+    isPrivate: false
+  })
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value, type } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
+    }))
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setStatus("submitting")
 
-    // Simulate API call
-    setTimeout(() => {
+    try {
+      // Replace these with your actual EmailJS credentials
+      const emailParams = {
+        service_id: "service_1mcg2zb",
+        template_id: "template_2ujvk4d",
+        user_id: "-7puQ9w9wja02eQTu",
+        template_params: {
+          name: formData.name,
+          phone: formData.phone,
+          prayer_request: formData.prayerRequest,
+          is_private: formData.isPrivate,
+          to_email: "sheldonletting04gmail.com" // Replace with admin email
+        }
+      }
+
+      await emailjs.send(
+        emailParams.service_id,
+        emailParams.template_id,
+        emailParams.template_params,
+        emailParams.user_id
+      )
+
       setStatus("success")
-    }, 1500)
+      toast.success("Prayer request sent successfully!")
+      setFormData({
+        name: "",
+        phone: "",
+        prayerRequest: "",
+        isPrivate: false
+      })
+    } catch (error) {
+      setStatus("error")
+      toast.error("Failed to send prayer request. Please try again.")
+      console.error("Email error:", error)
+    }
   }
 
   return (
@@ -46,13 +91,26 @@ export default function PrayerRequest() {
                 <label htmlFor="name" className="block text-sm font-medium mb-1">
                   Your Name
                 </label>
-                <Input id="name" required />
+                <Input 
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required 
+                />
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-1">
+                <label htmlFor="phone" className="block text-sm font-medium mb-1">
                   Phone Number
                 </label>
-                <Input id="number" type="phone number" required />
+                <Input 
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  required 
+                />
               </div>
             </div>
 
@@ -60,22 +118,36 @@ export default function PrayerRequest() {
               <label htmlFor="prayerRequest" className="block text-sm font-medium mb-1">
                 Prayer Request
               </label>
-              <Textarea id="prayerRequest" rows={5} placeholder="Share your prayer request here..." required />
+              <Textarea 
+                id="prayerRequest"
+                name="prayerRequest"
+                rows={5}
+                value={formData.prayerRequest}
+                onChange={handleChange}
+                placeholder="Share your prayer request here..."
+                required 
+              />
             </div>
 
             <div className="flex items-start">
               <input
-                id="private"
-                name="private"
+                id="isPrivate"
+                name="isPrivate"
                 type="checkbox"
+                checked={formData.isPrivate}
+                onChange={handleChange}
                 className="h-4 w-4 rounded border-gray-300 text-accent focus:ring-accent mt-1"
               />
-              <label htmlFor="private" className="ml-2 block text-sm text-gray-600">
+              <label htmlFor="isPrivate" className="ml-2 block text-sm text-gray-600">
                 Keep my request private (only visible to the prayer team)
               </label>
             </div>
 
-            <Button type="submit" className="w-full bg-accent hover:bg-accent/90" disabled={status === "submitting"}>
+            <Button 
+              type="submit" 
+              className="w-full bg-accent hover:bg-accent/90" 
+              disabled={status === "submitting"}
+            >
               {status === "submitting" ? "Submitting..." : "Submit Prayer Request"}
             </Button>
           </form>
