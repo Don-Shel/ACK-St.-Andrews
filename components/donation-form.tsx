@@ -1,27 +1,77 @@
 "use client"
 
-import type React from "react"
-
 import { useState } from "react"
+import { useFlutterwave, closePaymentModal } from 'flutterwave-react-v3'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
 import { CheckCircle, Heart } from "lucide-react"
+import { toast } from "sonner"
 
 export default function DonationForm() {
   const [amount, setAmount] = useState("")
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle")
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
+  })
 
   const presetAmounts = ["10", "25", "50", "100"]
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
+  const config = {
+    public_key: process.env.NEXT_PUBLIC_FLUTTERWAVE_PUBLIC_KEY!,
+    tx_ref: Date.now().toString(),
+    amount: Number(amount),
+    currency: 'KES',
+    payment_options: 'card,mpesa,mobilemoney',
+    customer: {
+      email: `${formData.firstName.toLowerCase()}.${formData.lastName.toLowerCase()}@example.com`,
+      phone_number: formData.phoneNumber,
+      name: `${formData.firstName} ${formData.lastName}`,
+    },
+    customizations: {
+      title: 'ACK St. Andrews Donation',
+      description: 'Donation to support our ministry',
+      logo: 'https://your-church-logo-url.png',
+    },
+  }
+
+  const handleFlutterPayment = useFlutterwave(config)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setStatus("submitting")
 
-    // Simulate API call
-    setTimeout(() => {
-      setStatus("success")
-    }, 1500)
+    try {
+      handleFlutterPayment({
+        callback: (response) => {
+          if (response.status === "successful") {
+            setStatus("success")
+            toast.success("Thank you for your donation!")
+            closePaymentModal()
+          } else {
+            setStatus("error")
+            toast.error("Payment failed. Please try again.")
+          }
+        },
+        onClose: () => {
+          setStatus("idle")
+        },
+      })
+    } catch (error) {
+      setStatus("error")
+      toast.error("Something went wrong. Please try again.")
+      console.error("Payment error:", error)
+    }
   }
 
   return (
@@ -44,7 +94,7 @@ export default function DonationForm() {
         ) : (
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="block text-sm font-medium mb-2">Select Amount</label>
+              <label className="block text-sm font-medium mb-2">Select Amount (KSH)</label>
               <div className="grid grid-cols-4 gap-2 mb-4">
                 {presetAmounts.map((preset) => (
                   <Button
@@ -54,18 +104,18 @@ export default function DonationForm() {
                     className={amount === preset ? "bg-primary hover:bg-primary/90" : ""}
                     onClick={() => setAmount(preset)}
                   >
-                    Ksh.{preset}
+                    KSH {preset}
                   </Button>
                 ))}
               </div>
               <div className="relative">
-                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">Ksh.</span>
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">KSH</span>
                 <Input
                   type="number"
                   placeholder="Other amount"
                   value={amount}
                   onChange={(e) => setAmount(e.target.value)}
-                  className="pl-8 "
+                  className="pl-12"
                   min="1"
                   step="1"
                 />
@@ -78,21 +128,41 @@ export default function DonationForm() {
                   <label htmlFor="firstName" className="block text-sm font-medium mb-1">
                     First Name
                   </label>
-                  <Input id="firstName" required />
+                  <Input
+                    id="firstName"
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleInputChange}
+                    required
+                  />
                 </div>
                 <div>
                   <label htmlFor="lastName" className="block text-sm font-medium mb-1">
                     Last Name
                   </label>
-                  <Input id="lastName" required />
+                  <Input
+                    id="lastName"
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleInputChange}
+                    required
+                  />
                 </div>
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-1">
+                <label htmlFor="phoneNumber" className="block text-sm font-medium mb-1">
                   Phone Number
                 </label>
-                <Input id="number" type="phone number" required />
+                <Input
+                  id="phoneNumber"
+                  name="phoneNumber"
+                  type="tel"
+                  value={formData.phoneNumber}
+                  onChange={handleInputChange}
+                  placeholder="e.g., 254700000000"
+                  required
+                />
               </div>
             </div>
 
