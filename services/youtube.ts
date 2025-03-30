@@ -11,8 +11,11 @@ export type YouTubeVideoType = {
   duration: string;
 };
 
-const YOUTUBE_API_KEY = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
-const CHANNEL_ID = process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL_ID;
+//const YOUTUBE_API_KEY = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
+//const CHANNEL_ID = process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL_ID;
+
+const YOUTUBE_API_KEY = "AIzaSyApDbFzdUQU9UsZJ60iGaV7duDIPPi0voY";
+const CHANNEL_ID = "UCa-FXOVWzyvoydGjd1MSJvg";
 
 export async function getChannelVideos(pageToken?: string) {
   try {
@@ -23,7 +26,7 @@ export async function getChannelVideos(pageToken?: string) {
     // First, get video IDs and basic info
     const searchResponse = await axios.get('https://www.googleapis.com/youtube/v3/search', {
       params: {
-        key: YOUTUBE_API_KEY,
+        key: YOUTUBE_API_KEY, 
         channelId: CHANNEL_ID,
         part: 'snippet',
         order: 'date',
