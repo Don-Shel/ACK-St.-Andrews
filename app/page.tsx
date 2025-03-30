@@ -315,14 +315,8 @@ export default function Home() {
             {/* Main Content - Spans 7 columns */}
             <div className="lg:col-span-7">
               <ScrollAnimation>
-                <div className="aspect-video rounded-2xl overflow-hidden shadow-2xl mb-6">
-                  <YouTubeVideo 
-                    videoId="z0bvLXAVAiY" 
-                    title="ACK St. Andrews Kibabet Choir - Featured Performance" 
-                  />
-                </div>
                 
-                <div className="prose dark:prose-invert max-w-none">
+                <div className="prose dark:prose-invert max-w-none bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
                   <h3 className="text-2xl font-bold mb-4">Excellence in Worship</h3>
                   <p className="text-gray-600 dark:text-gray-300">
                     With over four decades of ministry through music, our choir has become a cornerstone of worship at ACK St. Andrews Kibabet. Our repertoire includes traditional hymns, contemporary gospel, and original compositions in multiple languages including English, Swahili, and Kalenjin.
