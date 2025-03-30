@@ -75,13 +75,20 @@ export default function DonationForm() {
   }
 
   return (
-    <Card className="overflow-hidden">
+    <Card className="overflow-hidden relative">
+      <div className="absolute inset-0 bg-white/60 backdrop-blur-sm z-10 flex items-center justify-center">
+        <div className="transform rotate-[-35deg]">
+          <h2 className="text-4xl font-bold text-primary/90 whitespace-nowrap border-4 border-primary/90 px-8 py-2">
+            Coming Soon
+          </h2>
+        </div>
+      </div>
       <div className="bg-primary p-6 text-white text-center">
         <Heart className="h-12 w-12 mx-auto mb-3" />
         <h3 className="text-2xl font-bold">Support Our Ministry</h3>
         <p className="mt-2">Your generosity helps us spread God's love</p>
       </div>
-      <CardContent className="p-6">
+      <CardContent className="p-6 pointer-events-none opacity-60">
         {status === "success" ? (
           <div className="text-center py-8">
             <CheckCircle className="h-16 w-16 text-primary mx-auto mb-4" />
