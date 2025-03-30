@@ -175,7 +175,7 @@ export default function ContactPage() {
             <div>
               <h2 className="text-3xl font-bold mb-6">Find Us</h2>
               <p className="text-gray-600 mb-8">
-                We are located in Kibabet, Ngeria Prison, Eldoret, Uasin Gishu County. Join us for worship and fellowship.
+                We are located in Kibabet alongside Ngeria Prison Farm, Eldoret, Uasin Gishu County. Join us for worship and fellowship.
               </p>
               <div className="h-[400px] rounded-lg overflow-hidden">
                 {/* This would be replaced with an actual map component */}

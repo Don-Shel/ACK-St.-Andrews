@@ -1,20 +1,24 @@
+import React from 'react';
+
 interface YouTubeVideoProps {
-  videoId: string
-  title: string
-  className?: string
+  videoId: string;
+  title: string;
 }
 
-export default function YouTubeVideo({ videoId, title, className = "" }: YouTubeVideoProps) {
+const YouTubeVideo: React.FC<YouTubeVideoProps> = ({ videoId, title }) => {
   return (
-    <div className={`aspect-video ${className}`}>
-      <iframe
-        src={`https://www.youtube.com/embed/${videoId}`}
-        title={title}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-        className="w-full h-full rounded-lg"
-      ></iframe>
-    </div>
-  )
-}
+    <iframe
+      width="100%"
+      height="100%"
+      src={`https://www.youtube.com/embed/${videoId}`}
+      title={title}
+      frameBorder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+      className="absolute inset-0"
+    />
+  );
+};
+
+export default YouTubeVideo;
 

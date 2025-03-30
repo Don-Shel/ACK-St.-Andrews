@@ -1,3 +1,6 @@
+'use client'
+
+import { useState, useEffect } from 'react'
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -5,43 +8,33 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Music, Youtube, Calendar } from "lucide-react"
 import YouTubeVideo from "@/components/youtube-video"
 import ScrollAnimation from "@/components/scroll-animation"
+import { getChannelVideos, YouTubeVideoType } from "@/services/youtube"
 
 export default function ChoirPage() {
-  // YouTube video IDs from the church choir channel 
-  const featuredVideos = [
-    {
-      id: "6rsV2J4GjUs",
-      title: "OSINDONYU_ACK St Andrews Kibabet Choir_Eldoret Diocese",
-    },
-    {
-      id: "3j9nWXbqfH4", 
-      title: "Boisietab Chi_ACK Kibabet Choir_Eldoret Diocese",
-    },
-    {
-      id: "8yxngbQdjew",
-      title: "ONGETOGOSTE TULWET_ACK St Andrews Kibabet Choir_Eldoret Diocese", 
-    },
-    {
-      id: "z0bvLXAVAiY",
-      title: "Jona_ACK ST Andrews Kibabet Choir_Eldoret Diocese", 
-    },
-    {
-      id: "iP2YI9cGP3I",
-      title: "NGOT KOMATEECH JEHOVAH_ACK St Andrews Kibabet Choir_Eldoret Diocese", 
-    },
-    {
-      id: "gRsPV2AruC4",
-      title: "Lazaro_ACK St Andrews Kibabet Choir_Eldoret Diocese", 
-    },
-    {
-      id: "l-EgXYmooz4",
-      title: "Mi Taingung Luget_ACK St Andrews Kibabet Choir_Eldoret Diocese", 
-    },
-    {
-      id: "okdmj0GUxZQ",
-      title: "SAETAB KIPTAIYAT_ACK St Andrews Kibabet Choir_Eldoret Diocese", 
-    },
-  ]
+  const [videos, setVideos] = useState<YouTubeVideoType[]>([])
+  const [nextPageToken, setNextPageToken] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false)
+
+  // Fetch initial videos
+  useEffect(() => {
+    loadVideos()
+  }, [])
+
+  const loadVideos = async (pageToken?: string) => {
+    setLoading(true)
+    try {
+      const { videos: newVideos, nextPageToken: token } = await getChannelVideos(pageToken)
+      if (pageToken) {
+        setVideos(prev => [...prev, ...newVideos])
+      } else {
+        setVideos(newVideos)
+      }
+      setNextPageToken(token)
+    } catch (error) {
+      console.error('Error loading videos:', error)
+    }
+    setLoading(false)
+  }
 
   // Upcoming performances by the church choir
   const upcomingPerformances = [
@@ -146,39 +139,67 @@ export default function ChoirPage() {
         </div>
       </section>
 
-      {/* Featured Videos */}
-      <section id="videos" className="py-16 bg-gray-100">
+      {/* Featured Videos - Updated Section */}
+      <section id="videos" className="py-16 bg-gradient-to-b from-gray-50 to-gray-100">
         <div className="container mx-auto">
-          <div className="section-title">
-            <h2>Featured Performances</h2>
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4">Featured Performances</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Experience our latest worship performances and musical offerings
+            </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {featuredVideos.map((video, index) => (
-              <ScrollAnimation key={index} className="h-full">
-                <Card className="h-full card-hover">
+          
+          {loading && videos.length === 0 && (
+            <div className="text-center py-12 font-bold italics">
+              <p>Loading videos...</p>
+            </div>
+          )}
+
+          {!loading && videos.length === 0 && (
+            <div className="text-center py-12">
+              <p>No videos found. Please check back later.</p>
+            </div>
+          )}
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {videos.map((video) => (
+              <ScrollAnimation key={video.id} className="h-full">
+                <Card className="h-full transform hover:scale-105 transition-transform duration-300">
                   <CardContent className="p-6">
-                    <YouTubeVideo videoId={video.id} title={video.title} className="mb-4" />
-                    <h3 className="text-xl font-bold mb-2">{video.title}</h3>
-                    <p className="text-gray-600">
-                      Experience the beautiful harmonies and powerful worship from our choir.
-                    </p>
+                    <div className="aspect-video relative mb-4 rounded-lg overflow-hidden">
+                      <YouTubeVideo videoId={video.id} title={video.title} />
+                    </div>
+                    <h3 className="text-xl font-bold mb-2 line-clamp-2">{video.title}</h3>
+                    <p className="text-gray-600 text-sm mb-2 line-clamp-2">{video.description}</p>
+                    <div className="flex items-center justify-between text-sm text-gray-900">
+                      <div className="flex items-center space-x-2">
+                        <span>{video.viewCount} views</span>
+                        <span>•</span>
+                        <span>{video.likeCount} likes</span>
+                      </div>
+                      <div className="flex items-center space-x-2 font-bold">
+                        <span>{video.duration}</span>
+                        <span>•</span>
+                        <span>{new Date(video.publishedAt).toLocaleDateString()}</span>
+                      </div>
+                    </div>
                   </CardContent>
                 </Card>
               </ScrollAnimation>
             ))}
           </div>
-          <div className="text-center mt-10">
-            <Button asChild className="bg-primary hover:bg-primary/90">
-              <a
-                href="https://www.youtube.com/@ACKSTANDREWSKIBABETCHOIRELDORE"
-                target="_blank"
-                rel="noopener noreferrer"
+
+          {nextPageToken && (
+            <div className="text-center mt-12">
+              <Button
+                onClick={() => loadVideos(nextPageToken)}
+                disabled={loading}
+                className="bg-primary hover:bg-primary/90 min-w-[200px]"
               >
-                <Youtube className="mr-2 h-5 w-5" />
-                Visit Our YouTube Channel
-              </a>
-            </Button>
-          </div> 
+                {loading ? 'Loading...' : 'Load More Videos'}
+              </Button>
+            </div>
+          )}
         </div>
       </section>
 
