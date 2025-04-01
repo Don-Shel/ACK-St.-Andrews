@@ -72,21 +72,21 @@ export default function Home() {
             </p>
 
             {/* Optimized call-to-action buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 justify-center items-center animate-fade-in-up">
+            <div className="flex flex-row gap-3 justify-center items-center animate-fade-in-up">
               <Button 
-                asChild 
-                size="default"
-                className="bg-white text-primary hover:bg-white/90 text-base sm:text-lg rounded-full w-[180px] sm:min-w-[200px] h-10 sm:h-12 shadow-lg shadow-primary/20 transition-all duration-300 hover:transform hover:scale-105"
+              asChild 
+              size="default"
+              className="bg-white text-primary hover:bg-white/90 text-base sm:text-lg rounded-full w-[180px] sm:min-w-[200px] h-10 sm:h-12 shadow-lg shadow-primary/20 transition-all duration-300 hover:transform hover:scale-105"
               >
-                <Link href="/about">Learn More</Link>
+              <Link href="/about">Learn More</Link>
               </Button>
               <Button
-                asChild
-                size="default"
-                variant="outline"
-                className="border-2 border-white/50 bg-transparent hover:bg-white/10 text-white text-base sm:text-lg rounded-full w-[180px] sm:min-w-[200px] h-10 sm:h-12 backdrop-blur-sm transition-all duration-300 hover:transform hover:scale-105"
+              asChild
+              size="default"
+              variant="outline"
+              className="border-2 border-white/50 bg-transparent hover:bg-white/10 text-white text-base sm:text-lg rounded-full w-[180px] sm:min-w-[200px] h-10 sm:h-12 backdrop-blur-sm transition-all duration-300 hover:transform hover:scale-105"
               >
-                <Link href="/contact">Visit Us</Link>
+              <Link href="/contact">Visit Us</Link>
               </Button>
             </div>
 
