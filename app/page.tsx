@@ -52,15 +52,17 @@ export default function Home() {
         <div className="container relative z-10 px-4 mx-auto">
           <div className="max-w-5xl mx-auto text-center space-y-8">
             {/* Church name with modern typography */}
-            <div className="space-y-4">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm text-sm font-medium tracking-wider uppercase">
+            <div className="space-y-3 sm:space-y-4">
+              <span className="inline-block px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-white/10 backdrop-blur-sm text-xs sm:text-sm font-medium tracking-wider uppercase">
                 Welcome to
               </span>
-              <h1 className="text-5xl md:text-7xl font-bold leading-tight animate-fade-in">
+              <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold leading-tight animate-fade-in">
                 <span className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-white via-primary-foreground to-accent-foreground">
                   ACK St. Andrews
                 </span>
-                <span className="block text-3xl md:text-5xl mt-2 font-light">Kibabet</span>
+                <span className="block text-xl sm:text-3xl md:text-5xl mt-2 font-light">
+                  Kibabet
+                </span>
               </h1>
             </div>
 
