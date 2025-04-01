@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center text-white overflow-hidden px-4 py-16 sm:py-0">
+      <section className="relative min-h-screen flex items-center justify-center text-white overflow-hidden">
         {/* Background layers */}
         <div className="absolute inset-0 z-0">
           <Image
@@ -48,69 +48,64 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Content container with improved mobile layout */}
+        {/* Content container with modern layout */}
         <div className="container relative z-10 px-4 mx-auto">
-          <div className="max-w-5xl mx-auto text-center space-y-6 sm:space-y-8">
-            {/* Church name with adjusted typography */}
-            <div className="space-y-3 sm:space-y-4">
-              <span className="inline-block px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-white/10 backdrop-blur-sm text-xs sm:text-sm font-medium tracking-wider uppercase">
+          <div className="max-w-5xl mx-auto text-center space-y-8">
+            {/* Church name with modern typography */}
+            <div className="space-y-4">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm text-sm font-medium tracking-wider uppercase">
                 Welcome to
               </span>
-              <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold leading-tight animate-fade-in">
+              <h1 className="text-5xl md:text-7xl font-bold leading-tight animate-fade-in">
                 <span className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-white via-primary-foreground to-accent-foreground">
                   ACK St. Andrews
                 </span>
-                <span className="block text-xl sm:text-3xl md:text-5xl mt-2 font-light">
-                  Kibabet
-                </span>
+                <span className="block text-3xl md:text-5xl mt-2 font-light">Kibabet</span>
               </h1>
             </div>
 
-            {/* Tagline with adjusted sizing */}
-            <p className="text-lg sm:text-xl md:text-2xl font-light max-w-3xl mx-auto animate-fade-in-up opacity-90 px-4">
+            {/* Tagline with modern styling */}
+            <p className="text-xl md:text-2xl font-light max-w-3xl mx-auto animate-fade-in-up opacity-90">
               Join us in worship, fellowship, and service as we grow together in faith
             </p>
 
-            {/* Optimized call-to-action buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 justify-center items-center animate-fade-in-up">
+            {/* Modern call-to-action buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up">
               <Button 
                 asChild 
-                size="default"
-                className="bg-white text-primary hover:bg-white/90 text-base sm:text-lg rounded-full w-[180px] sm:min-w-[200px] h-10 sm:h-12 shadow-lg shadow-primary/20 transition-all duration-300 hover:transform hover:scale-105"
+                size="lg" 
+                className="bg-white text-primary hover:bg-white/90 text-lg rounded-full min-w-[200px] shadow-lg shadow-primary/20 transition-all duration-300 hover:transform hover:scale-105"
               >
                 <Link href="/about">Learn More</Link>
               </Button>
               <Button
                 asChild
-                size="default"
+                size="lg"
                 variant="outline"
-                className="border-2 border-white/50 bg-transparent hover:bg-white/10 text-white text-base sm:text-lg rounded-full w-[180px] sm:min-w-[200px] h-10 sm:h-12 backdrop-blur-sm transition-all duration-300 hover:transform hover:scale-105"
+                className="border-2 border-white/50 bg-transparent hover:bg-white/10 text-white text-lg rounded-full min-w-[200px] backdrop-blur-sm transition-all duration-300 hover:transform hover:scale-105"
               >
                 <Link href="/contact">Visit Us</Link>
               </Button>
             </div>
 
-            {/* Service time info with adjusted spacing */}
-            <div className="mt-8 sm:mt-12 inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/10 backdrop-blur-sm animate-fade-in-up delay-300">
-              <Clock className="h-3 w-3 sm:h-4 sm:w-4" />
-              <span className="text-xs sm:text-sm font-medium">Join us this Sunday at 10:30 AM</span>
+            {/* Service time quick info */}
+            <div className="mt-12 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm animate-fade-in-up delay-300">
+              <Clock className="h-4 w-4" />
+              <span className="text-sm font-medium">Join us this Sunday at 10:30 AM</span>
             </div>
           </div>
         </div>
 
-        {/* Scroll indicator adjusted for mobile */}
-        <div className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hidden sm:block">
-          <div className="w-5 h-8 sm:w-6 sm:h-10 rounded-full border-2 border-white/30 flex items-start justify-center p-2">
-            <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-white/60 animate-scroll"></div>
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <div className="w-6 h-10 rounded-full border-2 border-white/30 flex items-start justify-center p-2">
+            <div className="w-1.5 h-1.5 rounded-full bg-white/60 animate-scroll"></div>
           </div>
         </div>
 
-        {/* Memory verse with adjusted padding */}
+        {/* Memory verse with modern styling */}
         <div className="absolute bottom-0 left-0 right-0">
-          <MemoryVerse 
-            variant="overlay" 
-            className="bg-gradient-to-t from-black/50 to-transparent backdrop-blur-sm px-4 py-3 sm:py-4" 
-          />
+          <MemoryVerse variant="overlay" className="bg-gradient-to-t from-black/50 to-transparent backdrop-blur-sm" />
         </div>
       </section>
 
