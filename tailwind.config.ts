@@ -150,6 +150,15 @@ const config: Config = {
             opacity: "1",
           },
         },
+        subtleZoom: {
+          "0%, 100%": { transform: "scale(1)" },
+          "50%": { transform: "scale(1.05)" },
+        },
+        scroll: {
+          "0%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(8px)" },
+          "100%": { transform: "translateY(0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -162,6 +171,10 @@ const config: Config = {
         float: "float 6s infinite ease-in-out",
         "rotate-slow": "rotate-slow 15s linear infinite",
         "scale-up": "scale-up 0.5s ease-out",
+        "subtle-zoom": "subtleZoom 20s ease-in-out infinite",
+        "float-slow": "float 8s ease-in-out infinite",
+        "spin-slow": "spin 12s linear infinite",
+        "scroll": "scroll 1.5s ease-in-out infinite",
       },
       backdropFilter: {
         none: "none",
