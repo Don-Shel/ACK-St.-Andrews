@@ -95,15 +95,27 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="py-16 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
-              Welcome to ACK St. Andrews Kibabet
-            </h1>
-            <p className="text-gray-600 dark:text-gray-400 mt-4">
-              A place to grow in faith, connect with others, and serve the community
-            </p>
+      <section className="pt-32 pb-16 relative min-h-[60vh] flex items-center">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0 z-0">
+          <Image
+        src="/church1.jpg"
+        alt="Church Background"
+        fill
+        className="object-cover"
+          />
+          <div className="absolute inset-0 bg-black/50" />
+        </div>
+
+        {/* Content */}
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center">
+        <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+           About ACK St. Andrews Kibabet
+        </h1>
+        <p className="text-xl text-gray-200 mt-4 max-w-2xl mx-auto">
+          A place to grow in faith, connect with others, and serve the community
+        </p>
           </div>
         </div>
       </section>
