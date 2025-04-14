@@ -171,16 +171,18 @@ export default function ChoirPage() {
                     </div>
                     <h3 className="text-xl font-bold mb-2 line-clamp-2">{video.title}</h3>
                     <p className="text-gray-600 text-sm mb-2 line-clamp-2">{video.description}</p>
-                    <div className="flex items-center justify-between text-sm text-gray-900">
-                      <div className="flex items-center space-x-2">
-                        <span>{video.viewCount} views</span>
-                        <span>•</span>
-                        <span>{video.likeCount} likes</span>
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      <div className="flex items-center space-x-2 bg-blue-100 rounded-full px-3 py-1">
+                      <span className="text-sm text-blue-700">{video.viewCount} views</span>
                       </div>
-                      <div className="flex items-center space-x-2 font-bold">
-                        <span>{video.duration}</span>
-                        <span>•</span>
-                        <span>{new Date(video.publishedAt).toLocaleDateString()}</span>
+                      <div className="flex items-center space-x-2 bg-green-100 rounded-full px-3 py-1">
+                      <span className="text-sm text-green-700">{video.likeCount} likes</span>
+                      </div>
+                      <div className="flex items-center space-x-2 bg-purple-100 rounded-full px-3 py-1">
+                      <span className="text-sm text-purple-700">{video.duration}</span>
+                      </div>
+                      <div className="flex items-center space-x-2 bg-amber-100 rounded-full px-3 py-1">
+                        <span className="text-sm text-amber-700">{new Date(video.publishedAt).toLocaleDateString()}</span>
                       </div>
                     </div>
                   </CardContent>
