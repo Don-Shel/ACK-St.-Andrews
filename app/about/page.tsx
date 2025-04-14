@@ -1,3 +1,6 @@
+"use client"
+
+import { useState } from 'react'
 import Image from "next/image"
 import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
@@ -5,76 +8,102 @@ import { CheckCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Calendar, Clock, MapPin, Users, GraduationCap, Church } from "lucide-react"
 
+// Add this events data outside the component
+const weeklyEvents = {
+  Sunday: [
+    {
+      time: "8:00 AM - 10:00 AM",
+      title: "Sunday School Service",
+      location: "Education Building",
+      description: "Age-appropriate Bible lessons for children",
+      venue: "Main Sanctuary - Ground Floor"
+    },
+    {
+      time: "10:00 AM - 13:00 PM",
+      title: "Main Sunday Service",
+      location: "Main Sanctuary",
+      description: "Worship, prayer, and Biblical teaching for all",
+      venue: "Main Sanctuary - First Floor"
+    },
+    {
+      time: "14:30 PM - 18:00 PM",
+      title: "Youth Service",
+      location: "Fellowship Hall",
+      description: "Dynamic worship and relevant messages for young people",
+      venue: "Youth Hall - Second Floor"
+    }
+  ],
+  Monday: [
+    {
+      time: "17:00 PM - 18:30 PM",
+      title: "Evening Prayer",
+      location: "Chapel",
+      description: "Daily evening prayers and Bible study",
+      venue: "Chapel - Ground Floor"
+    }
+  ],
+  Tuesday: [
+    {
+      time: "16:00 PM - 18:00 PM",
+      title: "Women's Fellowship",
+      location: "Fellowship Hall",
+      description: "Bible study and prayer for women",
+      venue: "Fellowship Hall - Ground Floor"
+    }
+  ],
+  Wednesday: [
+    {
+      time: "17:00 PM - 19:00 PM",
+      title: "Midweek Service",
+      location: "Main Sanctuary",
+      description: "Midweek prayers and Bible teaching",
+      venue: "Main Sanctuary - Ground Floor"
+    }
+  ],
+  Thursday: [
+    {
+      time: "16:00 PM - 18:00 PM",
+      title: "Choir Practice",
+      location: "Choir Room",
+      description: "Weekly choir rehearsal",
+      venue: "Choir Room - First Floor"
+    }
+  ],
+  Friday: [
+    {
+      time: "16:00 PM - 18:00 PM",
+      title: "Youth Bible Study",
+      location: "Youth Room",
+      description: "Bible study for young adults",
+      venue: "Youth Room - Second Floor"
+    }
+  ],
+  Saturday: [
+    {
+      time: "09:00 AM - 11:00 AM",
+      title: "Children's Ministry",
+      location: "Education Building",
+      description: "Activities for children",
+      venue: "Education Building - Ground Floor"
+    }
+  ]
+}
+
 export default function AboutPage() {
+  const [selectedDay, setSelectedDay] = useState<keyof typeof weeklyEvents>("Sunday")
+
   return (
     <>
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 flex items-center justify-center text-center text-white">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/placeholder.svg?height=600&width=1920"
-            alt="Church interior"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-black/70"></div>
-        </div>
-        <div className="container relative z-10 px-4 mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">About Our Church</h1>
-          <p className="text-l max-w-3xl mx-auto italic">
-            Learn about our history, mission, and vision at ACK St. Andrews Kibabet
-          </p>
-        </div>
-      </section>
-
-      {/* Our Mission & Vision */}
-      <section className="py-16">
-        <div className="container mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Mission & Vision</h2>
-              <div className="mb-8">
-                <h3 className="text-2xl font-bold mb-3">Our Mission</h3>
-                <p className="text-gray-600 mb-6">
-                  To make disciples of Jesus Christ, build a community of believers, and serve our neighbors with
-                  compassion and love, all for the glory of God.
-                </p>
-              </div>
-              <div className="mb-8">
-                <h3 className="text-2xl font-bold mb-3">Our Vision</h3>
-                <p className="text-gray-600 mb-6">
-                  To be a vibrant, growing church that transforms lives through the power of the Gospel, equips
-                  believers for ministry, and impacts our community with the love of Christ.
-                </p>
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold mb-3">Our Values</h3>
-                <ul className="space-y-3">
-                  {[
-                    "Biblical Teaching and Preaching",
-                    "Passionate Worship",
-                    "Fervent Prayer",
-                    "Authentic Community",
-                    "Compassionate Service",
-                    "Intentional Discipleship",
-                  ].map((value, index) => (
-                    <li key={index} className="flex items-start">
-                      <CheckCircle className="h-6 w-6 text-primary mr-2 flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-600">{value}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-            <div className="relative h-[500px] rounded-lg overflow-hidden">
-              <Image
-                src="/placeholder.svg?height=1000&width=800"
-                alt="Church congregation"
-                fill
-                className="object-cover"
-              />
-            </div>
+      <section className="py-16 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
+              Welcome to ACK St. Andrews Kibabet
+            </h1>
+            <p className="text-gray-600 dark:text-gray-400 mt-4">
+              A place to grow in faith, connect with others, and serve the community
+            </p>
           </div>
         </div>
       </section>
@@ -254,13 +283,14 @@ export default function AboutPage() {
           </div>
 
           <div className="max-w-5xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-7 gap-4 mb-8">
-              {["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"].map((day, index) => (
+            <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-4 mb-8">
+              {Object.keys(weeklyEvents).map((day) => (
                 <button
                   key={day}
+                  onClick={() => setSelectedDay(day as keyof typeof weeklyEvents)}
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-all
-                    ${index === 0 
-                      ? "bg-primary text-white" 
+                    ${selectedDay === day
+                      ? "bg-primary text-white scale-105 shadow-lg" 
                       : "bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300"
                     }`}
                 >
@@ -270,122 +300,56 @@ export default function AboutPage() {
             </div>
 
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
-              {[
-                {
-                  day: "Sunday",
-                  events: [
-                    {
-                      time: "8:00 AM - 10:00 AM",
-                      title: "Sunday School Service",
-                      location: "Education Building",
-                      description: "Age-appropriate Bible lessons for children",
-                      icon: "GraduationCap"
-                    },
-                    {
-                      time: "10:00 AM - 13:00 PM",
-                      title: "Main Sunday Service",
-                      location: "Main Sanctuary",
-                      description: "Worship, prayer, and Biblical teaching for all",
-                      icon: "Church"
-                    },
-                    {
-                      time: "14:30 PM - 18:00 PM",
-                      title: "Youth Service",
-                      location: "Fellowship Hall",
-                      description: "Dynamic worship and relevant messages for young people",
-                      icon: "Users"
-                    }
-                  ]
-                },
-                // ...other days
-              ].map((day) => (
-                <div key={day.day} className="divide-y divide-gray-100 dark:divide-gray-700">
-                  {day.events.map((event, index) => (
-                    <div 
-                      key={index}
-                      className="p-6 transition-colors hover:bg-gray-50 dark:hover:bg-gray-700/50"
-                    >
-                      <div className="flex flex-col md:flex-row md:items-center gap-4">
-                        <div className="flex items-center gap-4 md:w-1/3">
-                          <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                            <Clock className="h-5 w-5 text-primary" />
-                          </div>
-                          <div>
-                            <p className="font-medium text-gray-900 dark:text-gray-100">
-                              {event.time}
-                            </p>
-                            <p className="text-sm text-gray-500 dark:text-gray-400">
-                              {event.title}
-                            </p>
-                          </div>
-                        </div>
-                        
-                        <div className="md:w-1/3">
-                          <div className="flex items-center gap-2">
-                            <MapPin className="h-4 w-4 text-primary" />
-                            <span className="text-gray-600 dark:text-gray-300">
-                              {event.location}
-                            </span>
-                          </div>
-                          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                            {event.description}
-                          </p>
-                        </div>
-
-                        <div className="md:w-1/3 flex justify-end">
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="rounded-full hover:bg-primary hover:text-white transition-colors"
-                          >
-                            Add to Calendar
-                          </Button>
-                        </div>
+              {weeklyEvents[selectedDay]?.map((event, index) => (
+                <div 
+                  key={index}
+                  className="p-6 transition-colors hover:bg-gray-50 dark:hover:bg-gray-700/50 border-b last:border-b-0 border-gray-100 dark:border-gray-700"
+                >
+                  <div className="flex flex-col md:flex-row md:items-center gap-4">
+                    <div className="flex items-center gap-4 md:w-1/3">
+                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <Clock className="h-5 w-5 text-primary" />
+                      </div>
+                      <div>
+                        <p className="font-medium text-gray-900 dark:text-gray-100">
+                          {event.time}
+                        </p>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">
+                          {event.title}
+                        </p>
                       </div>
                     </div>
-                  ))}
+                    
+                    <div className="md:w-1/3">
+                      <div className="flex items-center gap-2">
+                        <MapPin className="h-4 w-4 text-primary" />
+                        <span className="text-gray-600 dark:text-gray-300">
+                          {event.location}
+                        </span>
+                      </div>
+                      <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                        {event.description}
+                      </p>
+                    </div>
+
+                    <div className="md:w-1/3">
+                      <div className="flex items-center gap-2 justify-end">
+                        <MapPin className="h-4 w-4 text-primary" />
+                        <span className="text-sm font-medium text-gray-600 dark:text-gray-300">
+                          {event.venue}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               ))}
+              
+              {weeklyEvents[selectedDay]?.length === 0 && (
+                <div className="p-8 text-center text-gray-500 dark:text-gray-400">
+                  No events scheduled for this day
+                </div>
+              )}
             </div>
-          </div>
-
-          {/* Quick Links */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mt-12">
-            <Card className="bg-primary/5 border-none hover:bg-primary/10 transition-colors">
-              <CardContent className="p-6 flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Calendar className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-gray-900 dark:text-gray-100">Special Events</h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">View our upcoming events calendar</p>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-primary/5 border-none hover:bg-primary/10 transition-colors">
-              <CardContent className="p-6 flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Users className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-gray-900 dark:text-gray-100">Join a Ministry</h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">Find your place to serve</p>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-primary/5 border-none hover:bg-primary/10 transition-colors">
-              <CardContent className="p-6 flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                  <MapPin className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-gray-900 dark:text-gray-100">Get Directions</h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">Find your way to our church</p>
-                </div>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </section>
@@ -394,7 +358,7 @@ export default function AboutPage() {
       <section className="py-16 bg-secondary text-white">
         <div className="container mx-auto text-center">
            <h2 className="text-3xl md:text-4xl font-bold mb-6">Want to Host an Event?</h2>
-             <p className="text-xl mb-8 max-w-2xl mx-auto">
+             <p className="text-l mb-8 max-w-2xl mx-auto">
                   Our church facilities are available for weddings, conferences, and other community events. Contact us to
                   learn more about hosting your event at ACK St. Andrews Kibabet.
              </p>
