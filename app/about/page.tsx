@@ -1,6 +1,9 @@
 import Image from "next/image"
+import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
 import { CheckCircle } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Calendar, Clock, MapPin, Users, GraduationCap, Church } from "lucide-react"
 
 export default function AboutPage() {
   return (
@@ -76,24 +79,24 @@ export default function AboutPage() {
         </div>
       </section>
 
-            {/* Our History */}
-<section className="py-16 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900">
-  <div className="container mx-auto px-4">
-    <div className="text-center mb-12">
-      <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
-        Our Journey Through Time
-      </h2>
-      <p className="text-gray-600 dark:text-gray-400 mt-2">
-        Celebrating our growth and milestones since 2018
-      </p>
-    </div>
+      {/* Our History */}
+      <section className="py-16 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
+              Our Journey Through Time
+            </h2>
+            <p className="text-gray-600 dark:text-gray-400 mt-2">
+              Celebrating our growth and milestones since 2018
+            </p>
+          </div>
 
-    <div className="max-w-6xl mx-auto">
-      <div className="relative">
-        {/* Timeline Line - Hidden on mobile */}
-        <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-primary to-accent hidden md:block" />
+          <div className="max-w-6xl mx-auto">
+            <div className="relative">
+              {/* Timeline Line - Hidden on mobile */}
+              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-primary to-accent hidden md:block" />
 
-        {[
+              {[
                 {
                   period: "2018-2022",
                   title: "The Beginning",
@@ -234,6 +237,173 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      {/* Regular Schedule Section */}
+      <section className="py-16 bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <span className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-3">
+              Weekly Schedule
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
+              Join Us Throughout the Week
+            </h2>
+            <p className="text-gray-600 dark:text-gray-400 mt-2 max-w-2xl mx-auto">
+              We offer various services and activities throughout the week to help you grow in your faith journey
+            </p>
+          </div>
+
+          <div className="max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-7 gap-4 mb-8">
+              {["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"].map((day, index) => (
+                <button
+                  key={day}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all
+                    ${index === 0 
+                      ? "bg-primary text-white" 
+                      : "bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300"
+                    }`}
+                >
+                  {day}
+                </button>
+              ))}
+            </div>
+
+            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
+              {[
+                {
+                  day: "Sunday",
+                  events: [
+                    {
+                      time: "8:00 AM - 10:00 AM",
+                      title: "Sunday School Service",
+                      location: "Education Building",
+                      description: "Age-appropriate Bible lessons for children",
+                      icon: "GraduationCap"
+                    },
+                    {
+                      time: "10:00 AM - 13:00 PM",
+                      title: "Main Sunday Service",
+                      location: "Main Sanctuary",
+                      description: "Worship, prayer, and Biblical teaching for all",
+                      icon: "Church"
+                    },
+                    {
+                      time: "14:30 PM - 18:00 PM",
+                      title: "Youth Service",
+                      location: "Fellowship Hall",
+                      description: "Dynamic worship and relevant messages for young people",
+                      icon: "Users"
+                    }
+                  ]
+                },
+                // ...other days
+              ].map((day) => (
+                <div key={day.day} className="divide-y divide-gray-100 dark:divide-gray-700">
+                  {day.events.map((event, index) => (
+                    <div 
+                      key={index}
+                      className="p-6 transition-colors hover:bg-gray-50 dark:hover:bg-gray-700/50"
+                    >
+                      <div className="flex flex-col md:flex-row md:items-center gap-4">
+                        <div className="flex items-center gap-4 md:w-1/3">
+                          <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                            <Clock className="h-5 w-5 text-primary" />
+                          </div>
+                          <div>
+                            <p className="font-medium text-gray-900 dark:text-gray-100">
+                              {event.time}
+                            </p>
+                            <p className="text-sm text-gray-500 dark:text-gray-400">
+                              {event.title}
+                            </p>
+                          </div>
+                        </div>
+                        
+                        <div className="md:w-1/3">
+                          <div className="flex items-center gap-2">
+                            <MapPin className="h-4 w-4 text-primary" />
+                            <span className="text-gray-600 dark:text-gray-300">
+                              {event.location}
+                            </span>
+                          </div>
+                          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                            {event.description}
+                          </p>
+                        </div>
+
+                        <div className="md:w-1/3 flex justify-end">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="rounded-full hover:bg-primary hover:text-white transition-colors"
+                          >
+                            Add to Calendar
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Quick Links */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mt-12">
+            <Card className="bg-primary/5 border-none hover:bg-primary/10 transition-colors">
+              <CardContent className="p-6 flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Calendar className="h-6 w-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-medium text-gray-900 dark:text-gray-100">Special Events</h3>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">View our upcoming events calendar</p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-primary/5 border-none hover:bg-primary/10 transition-colors">
+              <CardContent className="p-6 flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Users className="h-6 w-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-medium text-gray-900 dark:text-gray-100">Join a Ministry</h3>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">Find your place to serve</p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-primary/5 border-none hover:bg-primary/10 transition-colors">
+              <CardContent className="p-6 flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                  <MapPin className="h-6 w-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-medium text-gray-900 dark:text-gray-100">Get Directions</h3>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">Find your way to our church</p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action */}
+      <section className="py-16 bg-secondary text-white">
+        <div className="container mx-auto text-center">
+           <h2 className="text-3xl md:text-4xl font-bold mb-6">Want to Host an Event?</h2>
+             <p className="text-xl mb-8 max-w-2xl mx-auto">
+                  Our church facilities are available for weddings, conferences, and other community events. Contact us to
+                  learn more about hosting your event at ACK St. Andrews Kibabet.
+             </p>
+            <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-lg">
+              <Link href="/contact">Contact Us</Link>
+            </Button>
+        </div>
+      </section>
+           
     </>
   )
 }

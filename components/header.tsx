@@ -16,7 +16,7 @@ const navigation = [
   { name: "About", href: "/about" },
   //{ name: "Sermons", href: "/sermons" },
   { name: "Choir", href: "/choir" },
-  { name: "Events", href: "/events" },
+  //{ name: "Events", href: "/events" },
   { name: "Gallery", href: "/gallery" },
   { name: "Contact", href: "/contact" },
 ]

@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Plus, X, Heart, Calendar, BookOpen, Music, MessageSquare } from "lucide-react"
+import { Plus, X, Heart, Calendar, BookOpen, Music, MessageSquare, PhoneCallIcon, HomeIcon } from "lucide-react"
 
 export default function FloatingActionButton() {
   const [isOpen, setIsOpen] = useState(false)
@@ -12,10 +12,24 @@ export default function FloatingActionButton() {
 
   const actions = [
     { icon: <Heart className="h-5 w-5" />, label: "Donate", href: "#donate" },
-    { icon: <Calendar className="h-5 w-5" />, label: "Events", href: "/events" },
+    //{ icon: <Calendar className="h-5 w-5" />, label: "Events", href: "/events" },
     //{ icon: <BookOpen className="h-5 w-5" />, label: "Sermons", href: "/sermons" },
     { icon: <Music className="h-5 w-5" />, label: "Choir", href: "/choir" },
     { icon: <MessageSquare className="h-5 w-5" />, label: "Prayer", href: "#prayer" },
+    { icon: <PhoneCallIcon className="h-5 w-5" />, label: "Contact", href: "/contact" },
+    //{ icon: <MessageSquare className="h-5 w-5" />, label: "Feedback", href: "/feedback" },
+    //{ icon: <MessageSquare className="h-5 w-5" />, label: "Gallery", href: "/gallery" },
+    //{ icon: <MessageSquare className="h-5 w-5" />, label: "Blog", href: "/blog" },
+    //{ icon: <MessageSquare className="h-5 w-5" />, label: "About", href: "/about" },
+    //{ icon: <HomeIcon className="h-5 w-5" />, label: "Home", href: "/" },
+    //{ icon: <MessageSquare className="h-5 w-5" />, label: "Privacy", href: "/privacy" },
+    //{ icon: <MessageSquare className="h-5 w-5" />, label: "Terms", href: "/terms" },
+    //{ icon: <MessageSquare className="h-5 w-5" />, label: "Help", href: "/help" },
+    //{ icon: <MessageSquare className="h-5 w-5" />, label: "Support", href: "/support" },
+    //{ icon: <MessageSquare className="h-5 w-5" />, label: "Settings", href: "/settings" },
+    //{ icon: <MessageSquare className="h-5 w-5" />, label: "Logout", href: "/logout" },
+    //{ icon: <MessageSquare className="h-5 w-5" />, label: "Login", href: "/login" },
+    //{ icon: <MessageSquare className="h-5 w-5" />, label: "Register", href: "/register" },
   ]
 
   return (
