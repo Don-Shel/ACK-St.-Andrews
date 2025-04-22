@@ -131,16 +131,16 @@ export default function Header() {
 
       {/* Mobile menu - Fixed positioning and z-index */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-[1000] lg:hidden">
+        <div className="fixed inset-0 z-[101] lg:hidden">
           {/* Backdrop */}
           <div
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm"
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[101]"
             onClick={() => setMobileMenuOpen(false)}
             aria-hidden="true"
           />
 
           {/* Menu panel */}
-          <div className="fixed inset-y-0 right-0 z-[100] w-full max-w-sm overflow-y-auto glass shadow-xl px-6 py-6">
+          <div className="fixed inset-y-0 right-0 z-[101] w-full max-w-sm overflow-y-auto glass shadow-xl px-6 py-6">
             <div className="flex items-center justify-between mb-6">
               <Link href="/" className="-m-1.5 p-1.5" onClick={() => setMobileMenuOpen(false)}>
                 <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
