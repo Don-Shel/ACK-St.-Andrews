@@ -18,9 +18,9 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: "ACK St. Andrews Kibabet",
-  description: "Anglican Church of Kenya - St. Andrews Kibabet Parish",
-    generator: 'v0.dev'
+  title: "ACK St. Andrews Kibabet | Faith that feels like family",
+  description: "Join ACK St. Andrews Kibabet in Eldoret for worship, fellowship, service, and community.",
+  generator: "v0.dev",
 }
 
 export default function RootLayout({

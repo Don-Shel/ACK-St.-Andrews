@@ -2,552 +2,76 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Calendar, Clock, BookOpen, Users, Youtube, ChevronRight, ChevronLeft } from "lucide-react"
-
-// Import our components
+import { ArrowUpRight, BookOpen, Calendar, Check, Clock, Heart, MapPin, Users, Youtube } from "lucide-react"
 import ScrollAnimation from "@/components/scroll-animation"
 import NewsletterSignup from "@/components/newsletter-signup"
-import YouTubeVideo from "@/components/youtube-video"
 import DonationForm from "@/components/donation-form"
 import PrayerRequest from "@/components/prayer-request"
 import MemoryVerse from "@/components/memory-verse"
 import AnimatedCounter from "@/components/animated-counter"
 import SermonPlayer from "@/components/sermon-player"
 import VirtualTour from "@/components/virtual-tour"
-import {EventsSection } from "@/components/events/events-section"
+import { EventsSection } from "@/components/events/events-section"
 
+const services = [
+  { icon: Clock, title: "Sunday School", time: "8:00 — 10:00 AM", copy: "A joyful start for children to worship, learn, and grow together." },
+  { icon: Users, title: "Main Service", time: "10:30 AM — 12:00 PM", copy: "Energetic worship and relevant teaching for the whole family." },
+  { icon: BookOpen, title: "Bible Study", time: "Wednesdays · 5:30 PM", copy: "Go deeper into Scripture through discussion and shared discovery." },
+]
+
+const values = ["A warm welcome for every generation", "Worship that brings us closer to God", "Practical faith lived out in community"]
 
 export default function Home() {
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center text-white overflow-hidden">
-        {/* Background layers */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/church1.jpg?height=1080&width=1920"
-            alt="Church building"
-            fill
-            className="object-cover transform scale-105 animate-subtle-zoom"
-            priority
-          />
-          {/* Modern gradient overlay with multiple layers */}
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-secondary/70 to-transparent opacity-80"></div>
-          <div className="absolute inset-0 bg-black opacity-20"></div>
-          
-          {/* Animated patterns and shapes */}
-          <div className="absolute inset-0 overflow-hidden">
-            {/* Modern geometric shapes */}
-            <div className="absolute top-1/4 left-1/4 w-72 h-72 rounded-full bg-gradient-to-r from-accent/20 to-primary/20 blur-3xl animate-float"></div>
-            <div className="absolute bottom-1/3 right-1/4 w-96 h-96 rounded-full bg-gradient-to-l from-primary/30 to-transparent blur-2xl animate-float-slow"></div>
-            <div className="absolute top-1/2 right-1/3 w-64 h-64 rounded-full border border-white/10 backdrop-blur-sm animate-spin-slow"></div>
-            
-            {/* Modern line decorations */}
-            <div className="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
-            <div className="absolute left-0 right-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
-          </div>
-        </div>
-
-        {/* Content container with modern layout */}
-        <div className="container relative z-10 px-4 mx-auto">
-          <div className="max-w-5xl mx-auto text-center space-y-8">
-            {/* Church name with modern typography */}
-            <div className="space-y-3 sm:space-y-4">
-              <span className="inline-block px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-white/10 backdrop-blur-sm text-xs sm:text-sm font-medium tracking-wider uppercase">
-                Welcome to
-              </span>
-              <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold leading-tight animate-fade-in">
-                <span className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-white via-primary-foreground to-accent-foreground">
-                  ACK St. Andrews
-                </span>
-                <span className="block text-xl sm:text-3xl md:text-5xl mt-2 font-light">
-                  Kibabet
-                </span>
-              </h1>
+      <section className="relative isolate min-h-[92svh] overflow-hidden bg-secondary text-secondary-foreground">
+        <Image src="/church1.jpg" alt="ACK St. Andrews church building" fill priority className="object-cover object-center opacity-45" sizes="100vw" />
+        <div className="absolute inset-0 bg-[linear-gradient(115deg,hsl(var(--secondary))_8%,transparent_65%),linear-gradient(0deg,hsl(var(--secondary)/.8),transparent_65%)]" />
+        <div className="ambient-orb ambient-orb-one" />
+        <div className="ambient-orb ambient-orb-two" />
+        <div className="container relative z-10 mx-auto flex min-h-[92svh] items-end px-4 pb-24 pt-32 md:px-8 md:pb-28">
+          <div className="max-w-3xl">
+            <div className="mb-7 flex items-center gap-3 text-sm font-medium uppercase tracking-[0.28em] text-primary">
+              <span className="h-px w-10 bg-primary" />
+              Welcome home
             </div>
-
-            {/* Tagline with modern styling */}
-            <p className="text-xl md:text-2xl font-light max-w-3xl mx-auto animate-fade-in-up opacity-90">
-              Join us in worship, fellowship, and service as we grow together in faith
-            </p>
-
-            {/* Modern call-to-action buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up">
-              <Button 
-                asChild 
-                size="lg" 
-                className="bg-white text-primary hover:bg-white/90 text-lg rounded-full min-w-[200px] shadow-lg shadow-primary/20 transition-all duration-300 hover:transform hover:scale-105"
-              >
-                <Link href="/about">Learn More</Link>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="border-2 border-white/50 bg-transparent hover:bg-white/10 text-white text-lg rounded-full min-w-[200px] backdrop-blur-sm transition-all duration-300 hover:transform hover:scale-105"
-              >
-                <Link href="/contact">Visit Us</Link>
-              </Button>
+            <h1 className="max-w-3xl text-5xl font-semibold leading-[.98] tracking-[-.05em] text-white sm:text-7xl lg:text-8xl">Faith that feels like family.</h1>
+            <p className="mt-7 max-w-xl text-lg leading-8 text-white/75 sm:text-xl">Join ACK St. Andrews Kibabet for wholehearted worship, honest community, and a life of service in Eldoret.</p>
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+              <Button asChild size="lg" className="rounded-full bg-primary px-7 text-secondary hover:bg-primary/90"><Link href="/contact">Plan your visit <ArrowUpRight data-icon="inline-end" /></Link></Button>
+              <Button asChild size="lg" variant="outline" className="rounded-full border-white/30 bg-white/10 px-7 text-white hover:bg-white/15"><Link href="#services">Explore our rhythm</Link></Button>
             </div>
-
-            {/* Service time quick info */}
-            <div className="mt-12 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm animate-fade-in-up delay-300">
-              <Clock className="h-4 w-4" />
-              <span className="text-sm font-medium">Join us this Sunday at 10:30 AM</span>
+            <div className="mt-12 flex flex-wrap gap-x-8 gap-y-3 text-sm text-white/70">
+              <span className="flex items-center gap-2"><Clock className="size-4 text-primary" /> Sundays at 10:30 AM</span>
+              <span className="flex items-center gap-2"><MapPin className="size-4 text-primary" /> Kibabet, Eldoret</span>
             </div>
           </div>
         </div>
+        <div className="absolute bottom-7 right-6 hidden text-right text-xs uppercase tracking-[0.24em] text-white/50 md:block">Scroll to discover <span className="ml-3 text-primary">↓</span></div>
+      </section>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 rounded-full border-2 border-white/30 flex items-start justify-center p-2">
-            <div className="w-1.5 h-1.5 rounded-full bg-white/60 animate-scroll"></div>
-          </div>
-        </div>
-
-        {/* Memory verse with modern styling */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <MemoryVerse variant="overlay" className="bg-gradient-to-t from-black/50 to-transparent backdrop-blur-sm" />
+      <section className="border-b border-border bg-background py-6">
+        <div className="container mx-auto flex flex-wrap items-center justify-between gap-5 px-4 md:px-8">
+          <p className="text-sm text-muted-foreground">A growing church family serving Kibabet since 2015.</p>
+          <div className="flex items-center gap-6 text-sm font-medium"><Link className="text-primary hover:underline" href="/about">Our story</Link><Link className="text-foreground hover:text-primary" href="/choir">Meet the choir</Link><Link className="text-foreground hover:text-primary" href="/gallery">See the gallery</Link></div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-white dark:bg-gray-900">
-        <div className="container mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <ScrollAnimation className="text-center">
-              <div className="p-6 rounded-xl bg-gradient-to-br from-primary/5 to-primary/10 dark:from-primary/10 dark:to-primary/20">
-                <AnimatedCounter end={2015} className="text-primary mb-2" />
-                <p className="text-gray-600 dark:text-gray-300 font-medium">Established</p>
-              </div>
-            </ScrollAnimation>
-            <ScrollAnimation className="text-center">
-              <div className="p-6 rounded-xl bg-gradient-to-br from-primary/5 to-primary/10 dark:from-primary/10 dark:to-primary/20">
-                <AnimatedCounter end={100} suffix="+" className="text-primary mb-2" />
-                <p className="text-gray-600 dark:text-gray-300 font-medium">Members</p>
-              </div>
-            </ScrollAnimation>
-            <ScrollAnimation className="text-center">
-              <div className="p-6 rounded-xl bg-gradient-to-br from-primary/5 to-primary/10 dark:from-primary/10 dark:to-primary/20">
-                <AnimatedCounter end={40} suffix="+" className="text-primary mb-2" />
-                <p className="text-gray-600 dark:text-gray-300 font-medium">Choir Members</p>
-              </div>
-            </ScrollAnimation>
-            <ScrollAnimation className="text-center">
-              <div className="p-6 rounded-xl bg-gradient-to-br from-primary/5 to-primary/10 dark:from-primary/10 dark:to-primary/20">
-                <AnimatedCounter end={12} className="text-primary mb-2" />
-                <p className="text-gray-600 dark:text-gray-300 font-medium">Ministries</p>
-              </div>
-            </ScrollAnimation>
-          </div>
-        </div>
-      </section>
+      <section id="services" className="section-shell bg-background"><div className="container mx-auto px-4 md:px-8"><ScrollAnimation><div className="max-w-2xl"><p className="eyebrow">Find your rhythm</p><h2 className="display-heading mt-4">There is a place for you here.</h2><p className="mt-5 text-lg leading-8 text-muted-foreground">Whether you are taking your first step or finding a deeper rhythm of faith, our weekly gatherings make space for questions, joy, and connection.</p></div></ScrollAnimation><div className="mt-14 grid gap-5 md:grid-cols-3">{services.map(({ icon: Icon, title, time, copy }, index) => <ScrollAnimation key={title} className={`delay-${index * 100}`}><Card className="group h-full rounded-[1.5rem] border-border/70 bg-card/70 shadow-none transition-all duration-300 hover:-translate-y-2 hover:border-primary/50 hover:shadow-xl"><CardContent className="flex h-full flex-col p-7"><div className="mb-10 flex size-12 items-center justify-center rounded-2xl bg-primary/10 text-primary"><Icon /></div><p className="text-sm font-medium text-primary">{time}</p><h3 className="mt-2 text-2xl font-semibold tracking-tight">{title}</h3><p className="mt-4 leading-7 text-muted-foreground">{copy}</p><Link href="/contact" className="mt-auto pt-8 text-sm font-semibold text-foreground transition-colors group-hover:text-primary">Learn more <span aria-hidden="true">↗</span></Link></CardContent></Card></ScrollAnimation>)}</div></div></section>
 
-      {/* Service Times Section */}
-      <section className="py-16 bg-gray-50 dark:bg-gray-800">
-        <div className="container mx-auto">
-          <div className="section-title">
-            <h2 className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">Service Times</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <ScrollAnimation>
-              <Card className="text-center hover:shadow-lg transition-shadow border-none bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm">
-                <CardContent className="pt-6">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Clock className="h-8 w-8 text-primary" />
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">Sunday School Service</h3>
-                  <p className="text-gray-600 dark:text-gray-300 mb-4">8:00 AM - 10:00 AM</p>
-                  <p className="text-gray-500 dark:text-gray-400">Let the children join for worship and prayer as we guide them through the Word of God.</p>
-                </CardContent>
-              </Card>
-            </ScrollAnimation>
-            <ScrollAnimation>
-              <Card className="text-center hover:shadow-lg transition-shadow border-none bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm">
-                <CardContent className="pt-6">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Users className="h-8 w-8 text-primary" />
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">Main Service</h3>
-                  <p className="text-gray-600 dark:text-gray-300 mb-4">10:30 AM - 12:00 PM</p>
-                  <p className="text-gray-500 dark:text-gray-400">
-                    Energetic worship and relevant teachings for all people.
-                  </p>
-                </CardContent>
-              </Card>
-            </ScrollAnimation>
-            <ScrollAnimation>
-              <Card className="text-center hover:shadow-lg transition-shadow border-none bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm">
-                <CardContent className="pt-6">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <BookOpen className="h-8 w-8 text-primary" />
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">Bible Study</h3>
-                  <p className="text-gray-600 dark:text-gray-300 mb-4">Wednesday, 5:30 PM - 7:00 PM</p>
-                  <p className="text-gray-500 dark:text-gray-400">
-                    Dive deeper into God's Word with interactive study and discussion.
-                  </p>
-                </CardContent>
-              </Card>
-            </ScrollAnimation>
-          </div>
-        </div>
-      </section>
+      <section className="section-shell bg-muted/35"><div className="container mx-auto grid items-center gap-12 px-4 md:px-8 lg:grid-cols-[.9fr_1.1fr]"><ScrollAnimation><div className="relative min-h-[430px] overflow-hidden rounded-[2rem] bg-secondary"><Image src="/church choir 3.png" alt="ACK St. Andrews choir singing" fill className="object-cover opacity-85 transition-transform duration-700 hover:scale-105" sizes="(max-width: 1024px) 100vw, 50vw" /><div className="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent" /><div className="absolute bottom-7 left-7 text-white"><p className="text-sm uppercase tracking-[0.2em] text-primary">Our community</p><p className="mt-2 text-2xl font-semibold">Many voices. One song.</p></div></div></ScrollAnimation><ScrollAnimation><div><p className="eyebrow">What guides us</p><h2 className="display-heading mt-4">Come as you are. Grow as you go.</h2><p className="mt-6 text-lg leading-8 text-muted-foreground">We are a welcoming Anglican parish where worship, friendship, and service meet. Our doors are open to curious seekers, growing families, and everyone in between.</p><div className="mt-8 flex flex-col gap-4">{values.map((value) => <div key={value} className="flex items-center gap-3"><span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary"><Check className="size-4" /></span><span className="font-medium">{value}</span></div>)}</div><Button asChild className="mt-10 rounded-full"><Link href="/about">Discover our story <ArrowUpRight data-icon="inline-end" /></Link></Button></div></ScrollAnimation></div></section>
 
-      {/* Virtual Tour Section */}
-      <section className="py-16 bg-white dark:bg-gray-900">
-        <div className="container mx-auto">
-          <div className="section-title">
-            <h2 className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
-              Virtual Church Tour
-            </h2>
-          </div>
-          <ScrollAnimation>
-            <VirtualTour />
-          </ScrollAnimation>
-          <div className="text-center mt-8">
-            <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-6">
-              Explore our church facilities virtually. Click on the hotspots to navigate between different areas of our
-              church.
-            </p>
-            <Button asChild className="bg-primary hover:bg-primary/90 rounded-full">
-              <Link href="/contact">
-                Visit Us In Person
-                <ChevronRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
+      <section className="section-shell bg-background"><div className="container mx-auto px-4 md:px-8"><div className="mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end"><div><p className="eyebrow">Stay connected</p><h2 className="display-heading mt-4">Life at St. Andrews.</h2></div><Link href="/events" className="font-semibold text-primary hover:underline">View all events <span aria-hidden="true">↗</span></Link></div><EventsSection /></div></section>
 
-      {/* Live Stream */}
-      <section className="py-16 bg-white dark:bg-gray-900">
-        <div className="container mx-auto">
-          <div className="section-title">
-            <h2 className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">Join Us Live</h2>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <ScrollAnimation>
-                <div className="aspect-video rounded-lg overflow-hidden shadow-lg">
-                    <video 
-                    src="/Blue Neon Tech Coming Soon Video.mp4" 
-                    className="w-full h-full object-cover"
-                    poster="/service-thumbnail.jpg"
-                    loop
-                    autoPlay
-                    muted
-                    ></video>
-                </div>
-            </ScrollAnimation>
-            <ScrollAnimation>
-              <h3 className="text-2xl font-bold mb-4">Watch Our Services Live</h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-6">
-                Can't make it to church in person? Join us online for our live-streamed services every Sunday. We
-                broadcast our services live on YouTube so you can worship with us from anywhere in the world.
-              </p>
-              <div className="space-y-4">
-                <div className="flex items-start">
-                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                    <Calendar className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold">Every Sunday</h4>
-                    <p className="text-gray-600 dark:text-gray-300">10:30 AM - 13:00 PM</p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                    <Youtube className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold">Subscribe to Our Channel</h4>
-                    <p className="text-gray-600 dark:text-gray-300">Never miss a service or special event</p>
-                  </div>
-                </div>
-              </div>
-              <div className="mt-6">
-                <Button asChild className="bg-primary hover:bg-primary/90 rounded-full">
-                  <a
-                    href="https://www.youtube.com/@ACKSTANDREWSKIBABETCHOIRELDORE"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Youtube className="mr-2 h-5 w-5" />
-                    Subscribe to Our Channel
-                  </a>
-                </Button>
-              </div>
-            </ScrollAnimation>
-          </div>
-        </div>
-      </section>
+      <section className="section-shell bg-secondary text-white"><div className="container mx-auto grid gap-12 px-4 md:px-8 lg:grid-cols-[1.1fr_.9fr] lg:items-center"><ScrollAnimation><div><p className="eyebrow text-primary">A little encouragement</p><h2 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">Make room for wonder.</h2><p className="mt-5 max-w-xl text-lg leading-8 text-white/70">Watch a service, listen to a sermon, or simply take a quiet moment with Scripture today.</p><div className="mt-8 flex flex-wrap gap-3"><Button asChild className="rounded-full bg-primary text-secondary hover:bg-primary/90"><a href="https://www.youtube.com/@ACKSTANDREWSKIBABETCHOIRELDORE" target="_blank" rel="noopener noreferrer">Watch on YouTube <Youtube data-icon="inline-end" /></a></Button><Button asChild variant="outline" className="rounded-full border-white/25 bg-white/10 text-white hover:bg-white/15"><Link href="/contact">Visit in person</Link></Button></div></div></ScrollAnimation><ScrollAnimation><div className="rounded-[1.5rem] border border-white/15 bg-white/5 p-7 backdrop-blur"><MemoryVerse variant="minimal" /><div className="mt-7 border-t border-white/10 pt-6"><SermonPlayer title="The Power of Faith in Difficult Times" speaker="Rev. John Kiprotich" audioSrc="/placeholder.mp3" /></div></div></ScrollAnimation></div></section>
 
-      {/* Events Section */}
-      <section className="py-20 relative overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-300/70 to-white-700/90 backdrop-blur-sm" />
-          <div className="absolute inset-0 bg-grid-pattern opacity-20" />
-          <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-primary/10 to-transparent" />
-        </div>
-        
-        <div className="container mx-auto relative">
-          <div className="text-center mb-6">
-            <span className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-1">
-              Upcoming Events
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
-              Join Us in Fellowship
-            </h2>
-            <p className="mt-1 text-gray-600 max-w-2xl mx-auto">
-              Stay connected with our community through these upcoming events
-            </p>
-          </div>
-          <EventsSection />
-        </div>
-      </section>
+      <section className="section-shell bg-background"><div className="container mx-auto px-4 md:px-8"><div className="mb-10 text-center"><p className="eyebrow">See it for yourself</p><h2 className="display-heading mt-4">A space to belong.</h2></div><ScrollAnimation><VirtualTour /></ScrollAnimation><div className="mt-8 text-center"><Button asChild variant="outline" className="rounded-full"><Link href="/contact">Come and see us <ArrowUpRight data-icon="inline-end" /></Link></Button></div></div></section>
 
-      {/* Latest Sermon */}
-      <section className="py-16 bg-white dark:bg-gray-900">
-        <div className="container mx-auto">
-          <div className="section-title">
-            <h2 className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">Latest Sermon</h2>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <ScrollAnimation>
-              <div className="relative h-[400px] rounded-lg overflow-hidden shadow-lg">
-                <Image
-                  src="/church1.jpg?height=800&width=600"
-                  alt="Pastor preaching"
-                  fill
-                  className="object-cover"
-                />
-                <MemoryVerse variant="overlay" />
-              </div>
-            </ScrollAnimation>
-            <ScrollAnimation>
-              <h3 className="text-2xl font-bold mb-4">The Power of Faith in Difficult Times</h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-6">
-                In this powerful sermon, Rev. John explores how faith can sustain us through life's most challenging
-                moments. Drawing from Scripture and personal experiences, he offers practical guidance on maintaining
-                hope and trust in God when facing adversity.
-              </p>
-              <SermonPlayer
-                title="The Power of Faith in Difficult Times"
-                speaker="Rev. John Kiprotich"
-                audioSrc="/placeholder.mp3"
-                className="mb-6"
-              />
-            </ScrollAnimation>
-          </div>
-        </div>
-      </section>
+      <section className="section-shell bg-muted/35"><div className="container mx-auto px-4 md:px-8"><div className="mb-10 max-w-2xl"><p className="eyebrow">A generous life</p><h2 className="display-heading mt-4">Support & prayer.</h2><p className="mt-4 text-lg leading-8 text-muted-foreground">Every prayer, gift, and act of service helps our church keep showing up for the community.</p></div><div className="grid gap-6 lg:grid-cols-2"><ScrollAnimation><DonationForm /></ScrollAnimation><ScrollAnimation><PrayerRequest /></ScrollAnimation></div></div></section>
 
-      {/* Choir Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
-        <div className="container mx-auto">
-          <div className="section-title text-center mb-12">
-            <h2 className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent text-4xl font-bold">
-              Our Award-Winning Choir
-            </h2>
-            <p className="text-gray-600 dark:text-gray-300 mt-4 max-w-2xl mx-auto">
-              Raising voices in harmony to glorify God through traditional and contemporary gospel music
-            </p>
-          </div>
+      <section className="section-shell bg-primary/10"><div className="container mx-auto px-4 md:px-8"><div className="grid items-center gap-10 lg:grid-cols-[.8fr_1.2fr]"><div><p className="eyebrow text-primary">Keep in touch</p><h2 className="display-heading mt-4">Good things are better shared.</h2></div><NewsletterSignup /></div></div></section>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            {/* Main Content - Spans 7 columns */}
-            <div className="lg:col-span-7">
-              <ScrollAnimation>
-                
-                <div className="prose dark:prose-invert max-w-none bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
-                  <h3 className="text-2xl font-bold mb-4">Excellence in Worship</h3>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    With over four decades of ministry through music, our choir has become a cornerstone of worship at ACK St. Andrews Kibabet. Our repertoire includes traditional hymns, contemporary gospel, and original compositions in multiple languages including English, Swahili, and Kalenjin.
-                  </p>
-                  
-                  <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-4">
-                    <div className="text-center p-4 bg-primary/5 rounded-lg">
-                      <h4 className="font-bold text-2xl text-primary">20+</h4>
-                      <p className="text-sm text-gray-600">Members</p>
-                    </div>
-                    <div className="text-center p-4 bg-primary/5 rounded-lg">
-                      <h4 className="font-bold text-2xl text-primary">10+</h4>
-                      <p className="text-sm text-gray-600">Songs</p>
-                    </div>
-                    <div className="text-center p-4 bg-primary/5 rounded-lg">
-                      <h4 className="font-bold text-2xl text-primary">3</h4>
-                      <p className="text-sm text-gray-600">Languages</p>
-                    </div>
-                    <div className="text-center p-4 bg-primary/5 rounded-lg">
-                      <h4 className="font-bold text-2xl text-primary">15+</h4>
-                      <p className="text-sm text-gray-600">Awards</p>
-                    </div>
-                  </div>
-                </div>
-              </ScrollAnimation>
-            </div>
-
-            {/* Latest Releases - Spans 5 columns */}
-            <div className="lg:col-span-5">
-              <ScrollAnimation>
-                <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
-                  <h3 className="text-xl font-semibold mb-6">Latest Performances</h3>
-                  
-                  <div className="space-y-4">
-                    {/* Individual Performance Items */}
-                    <div className="group hover:bg-primary/5 p-3 rounded-lg transition-all">
-                      <Link href="https://www.youtube.com/watch?v=3j9nWXbqfH4" 
-                            className="flex items-start space-x-4">
-                        <div className="relative w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
-                          <Image
-                            src="/song1.jpg" // Fallback image
-                            alt="Boisietab Chi_ACK Kibabet Choir_Eldoret Diocese"
-                            fill
-                            className="object-cover"
-                            sizes="(max-width: 96px) 100vw, 96px"
-                          />
-                        </div>
-                        <div>
-                          <h4 className="font-medium group-hover:text-primary transition-colors">
-                          Boisietab Chi_ACK Kibabet Choir_Eldoret Diocese
-                          </h4>
-                          <p className="text-sm text-gray-600 dark:text-gray-400">
-                            Kalenjin Worship
-                          </p>
-                          <p className="text-xs text-gray-500 mt-1">
-                            Released: October 2024
-                          </p>
-                        </div>
-                      </Link>
-                    </div>
-
-                    {/* Add more performance items here */}
-                  </div>
-
-                  <div className="mt-6">
-                    <Button asChild className="w-full bg-primary hover:bg-primary/90 rounded-full">
-                      <a
-                        href="https://www.youtube.com/@ACKSTANDREWSKIBABETCHOIRELDORE"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center"
-                      >
-                        <Youtube className="mr-2 h-5 w-5" />
-                        Subscribe to Our Channel
-                      </a>
-                    </Button>
-                  </div>
-                </div>
-              </ScrollAnimation>
-            </div>
-          </div>
-
-          {/* Photo Gallery */}
-          <div className="mt-12">
-            <ScrollAnimation>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="relative aspect-square rounded-xl overflow-hidden">
-                  <Image
-                    src="/church choir 3.png" // Fallback image
-                    alt="Choir performance"
-                    fill
-                    className="object-cover hover:scale-110 transition-transform duration-300"
-                    sizes="(max-width: 768px) 50vw, 25vw"
-                  />
-                </div>
-                <div className="relative aspect-square rounded-xl overflow-hidden">
-                  <Image
-                    src="/church choir 4.png"
-                    alt="Choir in traditional attire"
-                    fill
-                    className="object-cover hover:scale-110 transition-transform duration-300"
-                    sizes="(max-width: 768px) 50vw, 25vw"
-                  />
-                </div>
-                <div className="relative aspect-square rounded-xl overflow-hidden">
-                  <Image
-                    src="/church choir 5.png"
-                    alt="Choir performance at event"
-                    fill
-                    className="object-cover hover:scale-110 transition-transform duration-300"
-                    sizes="(max-width: 768px) 50vw, 25vw"
-                  />
-                </div>
-                <div className="relative aspect-square rounded-xl overflow-hidden">
-                  <Image
-                    src="/church choir 9.png"
-                    alt="Choir group photo"
-                    fill
-                    className="object-cover hover:scale-110 transition-transform duration-300"
-                    sizes="(max-width: 768px) 50vw, 25vw"
-                  />
-                </div>
-              </div>
-            </ScrollAnimation>
-          </div>
-
-          <div className="text-center mt-12">
-            <Button asChild className="bg-primary hover:bg-primary/90 rounded-full">
-              <Link href="/choir">
-                View Full Choir Profile
-                <ChevronRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Support Section */}
-      <section id="donate" className="py-16 bg-white dark:bg-gray-900">
-        <div className="container mx-auto">
-          <div className="section-title">
-            <h2 className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">Support & Prayer</h2>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <ScrollAnimation>
-              <DonationForm />
-            </ScrollAnimation>
-            <div id="prayer">
-              <ScrollAnimation>
-                <PrayerRequest />
-              </ScrollAnimation>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Newsletter */}
-      <section className="py-16 bg-gray-50 dark:bg-gray-800">
-        <div className="container mx-auto">
-          <ScrollAnimation>
-            <NewsletterSignup />
-          </ScrollAnimation>
-        </div>
-      </section>
-
-      {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-r from-secondary to-primary text-white">
-        <div className="container mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Join Us This Sunday</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
-            We'd love to welcome you to our church family. Come experience the love, joy, and community at ACK St.
-            Andrews Kibabet.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-white text-primary hover:bg-white/90 text-lg rounded-full">
-              <Link href="/contact">Get Directions</Link>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="border-white text-black hover:bg-white/20 text-lg rounded-full"
-            >
-              <Link href="/contact">Contact Us</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
+      <section className="relative overflow-hidden bg-primary py-20 text-secondary"><div className="ambient-orb ambient-orb-three" /><div className="container relative z-10 mx-auto px-4 text-center md:px-8"><Heart className="mx-auto mb-5 size-8 fill-current" /><h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">Your next Sunday could feel different.</h2><p className="mx-auto mt-5 max-w-xl text-lg leading-8 text-secondary/75">We would love to welcome you into the ACK St. Andrews family.</p><Button asChild size="lg" className="mt-8 rounded-full bg-secondary px-8 text-white hover:bg-secondary/90"><Link href="/contact">Plan your visit <ArrowUpRight data-icon="inline-end" /></Link></Button></div></section>
     </>
   )
 }
