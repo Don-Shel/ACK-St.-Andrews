@@ -61,7 +61,7 @@ export default function EventsPage() {
                   day of fun and community building.
                 </p>
                 <Button asChild className="bg-primary hover:bg-primary/90">
-                  <Link href="#">Learn More</Link>
+                  <Link href="/contact">Ask about this event</Link>
                 </Button>
               </div>
             </div>
@@ -153,7 +153,7 @@ export default function EventsPage() {
                   </div>
                   <p className="text-gray-600 mb-4 line-clamp-3">{event.description}</p>
                   <Button asChild variant="link" className="text-primary p-0">
-                    <Link href="#">View Details</Link>
+                    <Link href="/contact">Ask about this event</Link>
                   </Button>
                 </CardContent>
               </Card>
@@ -176,9 +176,9 @@ export default function EventsPage() {
                     {
                       day: "Sunday",
                       events: [
-                        { time: "10:00 AM - 13:00 AM", title: "Sunday Service", location: "Main Sanctuary" },
-                        { time: "14:30 AM - 18:00 PM", title: "Youth Service", location: "Fellowship Hall" },
-                        { time: "8:00 AM - 10:00 PM", title: "Sunday School Service", location: "Education Building" },
+                        { time: "10:00 AM - 1:00 PM", title: "Sunday Service", location: "Main Sanctuary" },
+                        { time: "2:30 PM - 6:00 PM", title: "Youth Service", location: "Fellowship Hall" },
+                        { time: "8:00 AM - 10:00 AM", title: "Sunday School Service", location: "Education Building" },
                       ],
                     },
                     {
