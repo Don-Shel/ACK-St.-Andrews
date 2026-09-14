@@ -4,7 +4,7 @@ import MemoryVerse from "@/components/memory-verse"
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-br from-secondary to-secondary/90 text-white pt-16 pb-8 relative overflow-hidden">
+    <footer className="relative overflow-hidden bg-secondary pb-8 pt-16 text-white">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-primary/5 animate-pulse-slow"></div>
@@ -16,7 +16,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* About Column */}
           <div>
-            <h3 className="text-xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
+            <h3 className="font-display mb-4 text-2xl font-semibold text-primary">
               ACK St. Andrews
             </h3>
             <p className="mb-4 text-gray-300">
@@ -85,7 +85,7 @@ export default function Footer() {
                 <Clock className="mr-2 h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                 <div>
                   <p className="font-semibold">Main Service</p>
-                  <p className="text-gray-300">10:30 AM - 13:00 PM</p>
+                  <p className="text-gray-300">10:30 AM - 1:00 PM</p>
                 </div>
               </li>
               <li className="flex items-start">

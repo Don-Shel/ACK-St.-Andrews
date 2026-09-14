@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Poppins } from "next/font/google"
+import { DM_Sans, Cormorant_Garamond } from "next/font/google"
 import "./globals.css"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
@@ -11,10 +11,16 @@ import CookieConsent from "@/components/cookie-consent"
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
-const poppins = Poppins({
+const bodyFont = DM_Sans({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-poppins",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-body",
+})
+
+const displayFont = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  variable: "--font-display",
 })
 
 export const metadata: Metadata = {
@@ -30,7 +36,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${poppins.variable} font-sans`}>
+      <body className={`${bodyFont.variable} ${displayFont.variable} font-sans`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
 
             <Header />

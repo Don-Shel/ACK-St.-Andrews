@@ -60,7 +60,7 @@ export default function Header() {
   return (
     <header
       className={cn(
-        "fixed w-full z-50 transition-all duration-300",
+        "fixed z-50 w-full transition-all duration-300",
         showBanner ? "top-[32px] sm:top-[60px]" : "top-0",
         isScrolled ? "glass border-b border-white/20 dark:border-white/10 shadow-sm py-2" : "bg-transparent py-5",
       )}
@@ -68,7 +68,7 @@ export default function Header() {
       <nav className="container mx-auto flex items-center justify-between">
         <div className="flex lg:flex-1">
           <Link href="/" className="-m-1.5 p-1.5">
-            <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
+            <span className="font-display text-2xl font-semibold tracking-[-.04em] text-secondary dark:text-foreground">
               ACK St. Andrews
             </span>
           </Link>
@@ -143,7 +143,7 @@ export default function Header() {
           <div className="fixed inset-y-0 right-0 z-[101] w-full max-w-sm overflow-y-auto glass shadow-xl px-6 py-6">
             <div className="flex items-center justify-between mb-6">
               <Link href="/" className="-m-1.5 p-1.5" onClick={() => setMobileMenuOpen(false)}>
-                <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
+                <span className="font-display text-2xl font-semibold tracking-[-.04em] text-secondary dark:text-foreground">
                   ACK St. Andrews
                 </span>
               </Link>

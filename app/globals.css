@@ -4,77 +4,83 @@
 
 @layer base {
   :root {
-    --background: 42 33% 97%;
-    --foreground: 196 38% 17%;
-    --card: 0 0% 100%;
-    --card-foreground: 196 38% 17%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 196 38% 17%;
-    --primary: 37 86% 58%;
-    --primary-foreground: 196 38% 17%;
-    --secondary: 196 42% 17%;
-    --secondary-foreground: 42 33% 97%;
-    --accent: 166 39% 39%;
-    --accent-foreground: 0 0% 100%;
-    --muted: 38 25% 91%;
-    --muted-foreground: 196 16% 43%;
-    --destructive: 0 72% 51%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 38 18% 85%;
-    --input: 38 18% 85%;
-    --ring: 166 39% 39%;
-    --radius: 1rem;
+    --background: 38 38% 96%;
+    --foreground: 184 27% 15%;
+    --card: 38 44% 99%;
+    --card-foreground: 184 27% 15%;
+    --popover: 38 44% 99%;
+    --popover-foreground: 184 27% 15%;
+    --primary: 15 58% 49%;
+    --primary-foreground: 38 44% 99%;
+    --secondary: 184 27% 15%;
+    --secondary-foreground: 38 38% 96%;
+    --accent: 78 27% 40%;
+    --accent-foreground: 38 44% 99%;
+    --muted: 36 24% 90%;
+    --muted-foreground: 184 12% 43%;
+    --destructive: 0 68% 47%;
+    --destructive-foreground: 38 44% 99%;
+    --border: 34 19% 82%;
+    --input: 34 19% 82%;
+    --ring: 15 58% 49%;
+    --radius: .9rem;
   }
   .dark {
-    --background: 196 42% 10%; --foreground: 42 33% 97%;
-    --card: 196 35% 14%; --card-foreground: 42 33% 97%;
-    --popover: 196 35% 14%; --popover-foreground: 42 33% 97%;
-    --muted: 196 30% 17%; --muted-foreground: 38 15% 70%;
-    --border: 196 25% 24%; --input: 196 25% 24%;
+    --background: 184 28% 10%;
+    --foreground: 38 38% 96%;
+    --card: 184 25% 14%;
+    --card-foreground: 38 38% 96%;
+    --popover: 184 25% 14%;
+    --popover-foreground: 38 38% 96%;
+    --muted: 184 20% 18%;
+    --muted-foreground: 38 15% 72%;
+    --border: 184 18% 26%;
+    --input: 184 18% 26%;
   }
   * { @apply border-border; }
   html { scroll-behavior: smooth; }
-  body { @apply bg-background text-foreground antialiased; overflow-x: hidden; }
-  h1, h2, h3, h4, h5, h6 { @apply font-bold; text-wrap: balance; }
+  body { @apply bg-background text-foreground antialiased; overflow-x: hidden; font-family: var(--font-body), sans-serif; letter-spacing: -.01em; }
+  h1, h2, h3, h4, h5, h6 { @apply font-bold; font-family: var(--font-display), Georgia, serif; text-wrap: balance; letter-spacing: -.035em; }
+  h1 { letter-spacing: -.055em; }
   p { text-wrap: pretty; }
-  .container { @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8; }
+  .container { @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10; }
   :focus-visible { @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background; }
 }
 
 @layer components {
   .section-shell { @apply relative overflow-hidden py-20 md:py-28; }
-  .display-heading { @apply max-w-3xl text-4xl font-semibold leading-[1.05] tracking-[-.04em] sm:text-5xl md:text-6xl; }
-  .eyebrow { @apply text-xs font-semibold uppercase tracking-[.24em] text-accent; }
-  .glass { @apply border border-white/20 bg-white/70 shadow-xl shadow-secondary/5 backdrop-blur-xl dark:bg-secondary/70; }
+  .display-heading { @apply max-w-3xl text-5xl font-semibold leading-[.94] tracking-[-.06em] sm:text-6xl md:text-7xl; }
+  .eyebrow { @apply text-[.68rem] font-bold uppercase tracking-[.28em] text-primary; }
+  .glass { @apply border border-white/30 bg-white/65 shadow-xl shadow-secondary/10 backdrop-blur-xl dark:border-white/10 dark:bg-secondary/70; }
   .section-title { @apply mb-10 flex flex-col gap-3; }
-  .section-title h2 { @apply text-3xl tracking-tight sm:text-4xl; }
+  .section-title h2 { @apply text-4xl tracking-[-.045em] sm:text-5xl; }
   .legacy-surface { @apply rounded-[var(--radius)] border border-border bg-card shadow-sm; }
   .prose-copy { @apply max-w-2xl text-base leading-8 text-muted-foreground md:text-lg; }
+  .editorial-rule { @apply h-px w-full bg-border/80; }
+  .page-intro { @apply relative overflow-hidden border-b border-border/80 bg-muted/30 pt-36 pb-16 md:pt-44 md:pb-24; }
+  .page-intro h1 { @apply mt-4 max-w-4xl text-6xl leading-[.9] sm:text-7xl md:text-8xl; }
+  .card-lift { @apply transition duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-secondary/10; }
 }
 
 .animate-on-scroll { opacity: 0; transform: translateY(24px); transition: opacity .75s cubic-bezier(.22,1,.36,1), transform .75s cubic-bezier(.22,1,.36,1); }
 .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
 .delay-100 { transition-delay: 100ms; }
 .delay-200 { transition-delay: 200ms; }
-.bg-grid-pattern { background-image: linear-gradient(to right, hsl(var(--foreground)/.06) 1px, transparent 1px), linear-gradient(to bottom, hsl(var(--foreground)/.06) 1px, transparent 1px); background-size: 32px 32px; }
+.bg-grid-pattern { background-image: linear-gradient(to right, hsl(var(--foreground)/.05) 1px, transparent 1px), linear-gradient(to bottom, hsl(var(--foreground)/.05) 1px, transparent 1px); background-size: 32px 32px; }
 .ambient-orb { position: absolute; border-radius: 9999px; pointer-events: none; filter: blur(2px); opacity: .45; animation: drift 12s ease-in-out infinite alternate; }
 .ambient-orb-one { width: 22rem; height: 22rem; right: 8%; top: 18%; background: hsl(var(--primary)/.2); box-shadow: 0 0 120px hsl(var(--primary)/.2); }
 .ambient-orb-two { width: 15rem; height: 15rem; left: 35%; bottom: 8%; background: hsl(var(--accent)/.2); box-shadow: 0 0 100px hsl(var(--accent)/.2); animation-delay: -4s; }
 .ambient-orb-three { width: 20rem; height: 20rem; left: 10%; top: -8rem; background: hsl(var(--secondary)/.13); }
 @keyframes drift { from { transform: translate3d(-12px, 8px, 0) scale(1); } to { transform: translate3d(18px, -18px, 0) scale(1.08); } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } .animate-on-scroll { opacity: 1; transform: none; } }
-@media (max-width: 640px) { .section-shell { @apply py-16; } }
+@media (max-width: 640px) { .section-shell { @apply py-16; } .page-intro h1 { @apply text-6xl; } }
 @media (prefers-contrast: more) { * { border-color: currentColor; } }
-
 a { @apply transition-colors; }
-::selection { background: hsl(var(--primary) / .35); }
+::selection { background: hsl(var(--primary) / .3); }
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-thumb { background: hsl(var(--secondary) / .35); border-radius: 999px; }
 ::-webkit-scrollbar-track { background: hsl(var(--background)); }
-
 .dark .bg-gray-100 { background-color: hsl(var(--muted)); }
 .dark .text-gray-600, .dark .text-gray-700 { color: hsl(var(--muted-foreground)); }
 .dark .bg-white { background-color: hsl(var(--card)); }
 .dark .text-gray-800 { color: hsl(var(--foreground)); }
-
-@media (prefers-reduced-motion: reduce) { .animate-on-scroll { opacity: 1 !important; transform: none !important; } }
