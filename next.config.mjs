@@ -7,6 +7,7 @@ try {
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  distDir: ".next-v0",
   eslint: {
     ignoreDuringBuilds: true,
   },
